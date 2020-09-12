@@ -26,7 +26,7 @@ export default function App() {
   return (
     <FadeIn>
 
-      { location.pathname !== '/' &&
+      { location.pathname !== '/gym' && 
         <Header />
       }
 
