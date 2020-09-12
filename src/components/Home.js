@@ -32,6 +32,15 @@ export default function Home() {
     // const history = useHistory();
     const query = useQuery();
     const code = query.get("code");
+
+    api.get('/br/11', {headers: headers})
+    .then(res => {
+        localStorage.setItem("gym_id", res.data.gym_id);
+        localStorage.setItem("cafe_id", res.data.cafe_id);
+    })
+    .catch((err) => {
+        console.log(err.response);
+    });
     
     // Code is still saved
     if (code) {
@@ -43,6 +52,7 @@ export default function Home() {
         api.post('/user/tmg5/zoom_login', body, {headers: headers})
         // api.get('/user/', {headers: headers})
         .then(res => {
+            
             console.log(res);
         })
         .catch((err) => {
