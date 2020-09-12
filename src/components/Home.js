@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Container, Grid, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import React from 'react';
+import { Container, Grid, Box, Typography } from '@material-ui/core';
 import RoomGrid from './RoomGrid';
 import Sidebar from './Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import useQuery from '../util/useQuery';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
 const api = Axios.create({
-    baseURL: 'https://papps2020.uc.r.appspot.com/'
+    // baseURL: 'https://papps2020.uc.r.appspot.com/'
+    baseURL: 'https://20200912t152951-dot-papps2020.uc.r.appspot.com/'
 });
 const headers = {
     'Content-Type': 'application/json'
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Home() {
     const classes = useStyles();
-    const history = useHistory();
+    // const history = useHistory();
     const query = useQuery();
     const code = query.get("code");
     

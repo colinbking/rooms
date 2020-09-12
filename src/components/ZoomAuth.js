@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Typography, Container } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 export default function ZoomAuth() {
     const classes = useStyles();
-    const history = useHistory();
+    // const history = useHistory();
 
     function handleZoom() {
         window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=15DlGcV7RQqgsnwVXLnHsQ&redirect_uri=https://www.roomy-pennapps.space/home";
