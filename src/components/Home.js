@@ -5,6 +5,14 @@ import Sidebar from './Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import useQuery from '../util/useQuery';
 import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
+
+const api = Axios.create({
+    baseURL: 'https://papps2020.uc.r.appspot.com/'
+});
+const headers = {
+    'Content-Type': 'application/json'
+}
 
 const useStyles = makeStyles(() => ({
     cont: {
@@ -27,8 +35,18 @@ export default function Home() {
     // Code is still saved
     if (code) {
         // TODO: make api call here
+        const body = {
+            "auth_code" : code
+        }
+        api.post('/user/tmg5/zoom_login/', body, {headers: headers})
+        .then(res => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
         
-        alert(code);
+        // alert(code);
         // history.push('/home');
     }
     

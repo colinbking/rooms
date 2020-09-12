@@ -1,24 +1,39 @@
 import React, { useState } from 'react';
 import { Container, Grid, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import gymImg from '../assets/gymFull.png';
-import gymImgYT from '../assets/gymFullYT.png';
+// import gymDefault from '../assets/gymDefault.png';
+import gymDefault from '../assets/gymDefaultBig.png';
+import gymOpen from '../assets/gymOpen.png';
+import gymSpotify from '../assets/gymSpotify.png';
+import gymYT from '../assets/gymYT.png';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
     defaultBackground: {
-        backgroundImage: `url(${gymImg})`,
+        backgroundImage: `url(${gymDefault})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, ytHighlight: {
-        backgroundImage: `url(${gymImgYT})`,
+        backgroundImage: `url(${gymYT})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-    }, youtubeBtn: {
+    }, spotifyHighlight: {
+        backgroundImage: `url(${gymSpotify})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    }, openDoor: {
+        backgroundImage: `url(${gymOpen})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    },youtubeBtn: {
         height: '4rem',
         width: '6rem',
         position: 'absolute',
@@ -78,7 +93,7 @@ export default function Gym() {
     }
     
     function handleSpotifyHover() {
-        // TODO: change image
+        setGClass(classes.spotifyHighlight);
     }
 
     function handleSpotifyClick() {
@@ -86,7 +101,7 @@ export default function Gym() {
     }
     
     function handleDoorHover() {
-        // TODO: change image
+        setGClass(classes.openDoor);
     }
 
     function handleDoorClick() {
@@ -100,8 +115,8 @@ export default function Gym() {
     return (
         <div className={gClass}>
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
-            <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onClick={() => handleSpotifyClick()}/>
-            <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onClick={() => handleDoorClick()}/>
+            <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
+            <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
             { showSpotify && 
                 <iframe src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             }

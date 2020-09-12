@@ -2,7 +2,9 @@ import React from 'react';
 import { Grid, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import deskRoom from '../assets/deskRoom.png';
+// import deskRoom from '../assets/deskRoom.png';
+import deskRoom from '../assets/resizeTest.png';
+import cafeRoom from '../assets/cafeRoom.png';
 import gymRoom from '../assets/gymRoom.png';
 import kitchenRoom from '../assets/kitchenRoom.png';
 import labRoom from '../assets/labRoom.png';
@@ -53,7 +55,7 @@ export default function RoomGrid() {
                             component="img"
                             alt="gymRoom"
                             height="275"
-                            image={gymRoom}
+                            image={cafeRoom}
                             title="Cafe"
                         />
                         <CardContent>
