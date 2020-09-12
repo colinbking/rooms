@@ -82,7 +82,6 @@ export default function Cafe() {
     const [gClass, setGClass] = useState(classes.defaultBackground);
     
     function handleYTHover() {
-        // TODO: change image
         setGClass(classes.ytHighlight);
     }
 

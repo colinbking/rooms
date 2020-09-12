@@ -57,10 +57,10 @@ const useStyles = makeStyles(() => ({
     },
     doorBtn: {
         height: '25rem',
-        width: '8rem',
+        width: '12rem',
         position: 'absolute',
-        top: '22rem',
-        left: '6rem',
+        top: '24rem',
+        left: '3rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -82,7 +82,6 @@ export default function Gym() {
     const [gClass, setGClass] = useState(classes.defaultBackground);
     
     function handleYTHover() {
-        // TODO: change image
         setGClass(classes.ytHighlight);
     }
 

@@ -56,7 +56,7 @@ export default function Sidebar() {
             <Divider />
             <Box className={classes.usersBox}>
                 <Typography variant='h3'>
-                    Nogrammers
+                    Roomies
                 </Typography>
                 <br />
                 <Typography variant="h6">

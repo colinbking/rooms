@@ -40,7 +40,8 @@ export default function Home() {
         const body = {
             "auth_code" : code
         }
-        api.post('/user/tmg5/zoom_login/', body, {headers: headers})
+        api.post('/user/tmg5/zoom_login', body, {headers: headers})
+        // api.get('/user/', {headers: headers})
         .then(res => {
             console.log(res);
         })
@@ -61,7 +62,7 @@ export default function Home() {
                 <Grid item xs={9}>
                     <Container className={classes.cont} maxWidth='lg'>
                         <Typography variant='h4' align='center'>
-                            <Box fontWeight="fontWeightBold">Nogrammers</Box>
+                            <Box fontWeight="fontWeightBold">Roomies</Box>
                         </Typography>
                         <Box mt='1rem'>
                             <RoomGrid />
