@@ -5,6 +5,16 @@ import gymOpen from '../assets/gymOpen.png';
 import gymSpotify from '../assets/gymSpotify.png';
 import gymYT from '../assets/gymYT.png';
 import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
+
+const api = Axios.create({
+    // baseURL: 'https://papps2020.uc.r.appspot.com/'
+    baseURL: 'https://20200912t152951-dot-papps2020.uc.r.appspot.com/'
+});
+const headers = {
+    'Content-Type': 'application/json'
+}
+
 
 const useStyles = makeStyles(() => ({
     defaultBackground: {
@@ -80,6 +90,22 @@ export default function Gym() {
     const history = useHistory();
     const [showSpotify, setShowSpotify] = useState(false);
     const [gClass, setGClass] = useState(classes.defaultBackground);
+
+    const body = {
+        "username" : localStorage.getItem("username"),
+        "id" : 4
+    }
+    api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
+    .then(res => {
+        localStorage.setItem("meeting", res.data.meeting);
+        window.open(
+            res.data.meeting,
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    })
+    .catch((err) => {
+        console.log(err.response);
+    })
     
     function handleYTHover() {
         setGClass(classes.ytHighlight);

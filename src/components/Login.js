@@ -44,7 +44,7 @@ export default function Login() {
                                 setTimeout(() => {
                                     // TODO: make api call here
 
-                                    sessionStorage.setItem("username", values.username);
+                                    localStorage.setItem("username", values.username);
                                     
                                     history.push('/zoomAuth');
 

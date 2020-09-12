@@ -45,7 +45,7 @@ export default function Sidebar() {
                     </Grid>
                     <Grid item xs={6} className={classes.rightBox}>
                         <Typography align='center' variant='h4'>
-                            { sessionStorage.getItem("username") }
+                            { localStorage.getItem("username") }
                         </Typography>
                         <Typography align='center' variant='subtitle1'>
                             Chillin'
