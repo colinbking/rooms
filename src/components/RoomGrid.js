@@ -2,8 +2,12 @@ import React from 'react';
 import { Grid, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import lofi from '../assets/lofi.jpg';
-import gymRoom from '../assets/gymRoomIcon.svg';
+import deskRoom from '../assets/deskRoom.png';
+import gymRoom from '../assets/gymRoom.png';
+import kitchenRoom from '../assets/kitchenRoom.png';
+import labRoom from '../assets/labRoom.png';
+import loungeRoom from '../assets/loungeRoom.png';
+
 
 const useStyles = makeStyles(() => ({
     cont: {
@@ -13,7 +17,7 @@ const useStyles = makeStyles(() => ({
         marginTop: '5rem'
     },
     card: {
-
+        
     }
 }));
 
@@ -22,159 +26,129 @@ export default function RoomGrid() {
     return (
         <Grid container spacing={3}>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea component={Link} to={'/gym'}>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={gymRoom}
-                        title="Gym"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Gym
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea component={Link} to={'/gym'}>
+                        <CardMedia
+                            component="img"
+                            alt="gym room"
+                            height="275"
+                            image={gymRoom}
+                            title="Gym"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Gym
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Getting buff: cbk1, sj43
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={lofi}
-                        title="Cafe"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Cafe
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="loungeRoom"
+                            height="275"
+                            image={loungeRoom}
+                            title="Lounge"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Lounge
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Couch surfing: tmg5
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={lofi}
-                        title="Cafe"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Cafe
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="kitchenRoom"
+                            height="275"
+                            image={kitchenRoom}
+                            title="Kitchen"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Kitchen
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Cooking up a storm: cmz2
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={lofi}
-                        title="Cafe"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Cafe
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="deskRoom"
+                            height="275"
+                            image={deskRoom}
+                            title="Study room"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Study room
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Studying hard: rixner
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={lofi}
-                        title="Cafe"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Cafe
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="labRoom"
+                            height="275"
+                            image={labRoom}
+                            title="Classroom"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Classroom
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Streaming lectures: luay
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Lofi"
-                        height="140"
-                        image={lofi}
-                        title="Cafe"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Cafe
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        pls study with me uwu
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Currently chilling: tmg5, cbk1, cmz2, sj43
-                    </Typography>
-                </CardActions>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="gymRoom"
+                            height="275"
+                            image={gymRoom}
+                            title="Cafe"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Cafe
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Buying a coffee: leebron
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
                 </Card>
             </Grid>
         </Grid>

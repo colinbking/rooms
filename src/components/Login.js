@@ -34,7 +34,7 @@ export default function Login() {
             <Container className={classes.cont} maxWidth="xs">
                 <Box className={classes.box}>
                     <Typography variant="h4">
-                        <Box fontWeight="fontWeightBold">Please login with zoom</Box>
+                        <Box fontWeight="fontWeightBold">Please enter a username</Box>
                     </Typography>
 
                     <Box className={classes.formBox}>

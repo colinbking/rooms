@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import logo from '../assets/gymRoom.png';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,9 +13,12 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
+  left: {
     flexGrow: 1,
   },
+  logo: {
+    maxHeight: '3rem'
+  }
 }));
 
 export default function Header() {
@@ -27,13 +29,8 @@ export default function Header() {
         <div className={classes.root}>
         <AppBar position="static">
             <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-                News
-            </Typography>
-            <Button color="inherit">Login</Button>
+              <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
+              <Typography variant="h6">&nbsp;&nbsp;ROOMY</Typography>
             </Toolbar>
         </AppBar>
         </div>

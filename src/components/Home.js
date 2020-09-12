@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
     cont: {
-        marginTop: '2rem'
+        marginTop: '1rem'
     },
     rightBox: {
         marginTop: '5rem'
@@ -27,10 +27,10 @@ export default function Login() {
                 </Grid>
                 <Grid item xs={9}>
                     <Container className={classes.cont} maxWidth='lg'>
-                        <Typography variant='h3' align='center'>
+                        <Typography variant='h4' align='center'>
                             <Box fontWeight="fontWeightBold">Nogrammers</Box>
                         </Typography>
-                        <Box mt='3rem'>
+                        <Box mt='1rem'>
                             <RoomGrid />
                         </Box>
                     </Container>

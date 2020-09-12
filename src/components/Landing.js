@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Typography, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import door from '../assets/door.png';
+import doorClosed from '../assets/doorClosed.png';
+import doorOpen from '../assets/doorOpen.png';
 
 const useStyles = makeStyles(() => ({
     cont: {
-        marginTop: '8rem'
+        // marginTop: '2rem'
     },
     rightBox: {
-        marginTop: '5rem'
+        marginBottom: '2rem'
+    },
+    img: {
+        maxHeight: '40rem',
+        marginLeft: '15rem'
     }
 }));
 
 export default function Login() {
     const classes = useStyles();
+    const [doorSrc, setDoorSrc] = useState(doorClosed);
     
     return (
         <>
             <Container className={classes.cont} maxWidth="lg">
-                <Grid container spacing={1}>
+                <Grid container alignItems="center" justify="center" spacing={1}>
                     <Grid item xs={6}>
-                        <img src={door} alt="open door" />
+                        <Link to='/login'>
+                            <img src={doorSrc} className={classes.img} alt="door" 
+                                onMouseEnter={() => setDoorSrc(doorOpen)}
+                                onMouseOut={() => setDoorSrc(doorClosed)}
+                            />
+                        </Link>
                     </Grid>
                     <Grid item xs={6}>
                         <Box className={classes.rightBox}>
