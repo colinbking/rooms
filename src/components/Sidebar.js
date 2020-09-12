@@ -5,15 +5,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import pfp from '../assets/pfp.png';
 
 
+// TODO: remove card shadow, center card text
+
 const useStyles = makeStyles(() => ({
     bar: {
-        height: '93vh',
-        backgroundColor: '#CDCDCD',
-        boxShadow: '0px 3px 2px rgba(0, 0, 0, 0.5)',
-        marginRight: '1rem'
+        paddingTop: '3rem',
+        height: '100vh',
+        backgroundColor: '#F2F2F2',
+        marginRight: '-4rem'
     },
     profileBox: {
-        padding: '2rem'
+        padding: '2rem',
+        paddingRight: '0rem'
     },
     pfp: {
         height: '10rem',
@@ -55,7 +58,7 @@ export default function Sidebar() {
             </Box>
             <Divider />
             <Box className={classes.usersBox}>
-                <Typography variant='h3'>
+                <Typography variant='h4'>
                     Roomies
                 </Typography>
                 <br />

@@ -30,7 +30,7 @@ const globalTheme = createMuiTheme({
             contrastText: '#3E9795', // Dark green text
         },
         secondary: {
-            main: '#5cf27f'
+            main: '#a9db63'
         },
         /* Typography colors */
         text: {
@@ -41,6 +41,9 @@ const globalTheme = createMuiTheme({
     /* Typography */
     typography: {
         fontFamily: ['AcariSans', 'Roboto', 'Helvetica', 'Arial', 'sans-seri'].join(','),
+        subtitle2: {
+            fontSize: 18
+        },
         button: {
             textTransform: 'none',
             fontWeight: '700',

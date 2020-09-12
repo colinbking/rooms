@@ -30,9 +30,9 @@ export default function App() {
       <ThemeProvider theme={globalTheme}>
         <CssBaseline />
 
-      { location.pathname !== '/gym' && location.pathname !== '/cafe' &&
-        <Header />
-      }
+        { location.pathname !== '/gym' && location.pathname !== '/cafe' && location.pathname !== '/home' &&
+          <Header />
+        }
 
       <TransitionGroup className="transition-group">
         <CSSTransition

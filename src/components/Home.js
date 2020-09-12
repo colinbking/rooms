@@ -17,7 +17,7 @@ const headers = {
 
 const useStyles = makeStyles(() => ({
     cont: {
-        marginTop: '1rem'
+        marginTop: '5rem'
     },
     rightBox: {
         marginTop: '5rem'
@@ -66,13 +66,13 @@ export default function Home() {
     return (
         <>
             <Grid container spacing={0}>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={10}>
                     <Container className={classes.cont} maxWidth='lg'>
-                        <Typography variant='h4' align='center'>
-                            <Box fontWeight="fontWeightBold">Roomies</Box>
+                        <Typography variant='h3' align='center'>
+                            <Box fontWeight="fontWeightBold" style={{marginTop:'-1rem'}}>Roomies<br /></Box>
                         </Typography>
                         <Box mt='1rem'>
                             <RoomGrid />

@@ -38,6 +38,7 @@ export default function ZoomAuth() {
                 <Box className={classes.box}>
                     <Typography variant="h4">
                         <Box fontWeight="fontWeightBold">Please login with zoom</Box>
+                        TODO: text here about why to connect
                     </Typography>
 
                     <Box className={classes.formBox}>

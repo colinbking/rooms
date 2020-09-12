@@ -7,14 +7,15 @@ import doorOpen from '../assets/doorOpen.png';
 
 const useStyles = makeStyles(() => ({
     cont: {
-        // marginTop: '2rem'
+        marginTop: '2rem'
     },
     rightBox: {
-        marginBottom: '2rem'
+        marginRight: '2rem',
+        marginLeft: '-2rem'
     },
     img: {
         maxHeight: '40rem',
-        marginLeft: '15rem'
+        marginLeft: '10rem'
     }
 }));
 
@@ -36,14 +37,19 @@ export default function Login() {
                     </Grid>
                     <Grid item xs={6}>
                         <Box className={classes.rightBox}>
-                            <Typography variant='h2'>
-                                Welcome to Roomy
+                            <Typography variant='h3'>
+                                There's plenty of room!
                             </Typography>
-                            <Typography variant='subtitle1'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula dui, eleifend ut leo eu, dictum volutpat est. Praesent a arcu non elit pretium fringilla sed et sem. Suspendisse lacinia egestas metus at faucibus. Maecenas auctor est sit amet turpis ornare, eu vulputate turpis placerat. Donec quis fermentum mi, eu porttitor quam. In ut pretium justo. Vivamus condimentum sapien eget nisi posuere bibendum.
-                                <br />
-                                <br />
-                                Click the door to begin
+                            <Typography variant='subtitle2'>
+                            <br />
+                            In an increasingly virtual world, interaction at its core has begun to transform. Virtual communication has grown so common that it no longer pales in comparison to hanging out in person. In fact, the age of video calling has made it so that connectivity knows no more bounds, allowing relationships to stretch across space and time!  A room is no longer just a physical space, it is... 
+                            <ul>
+                                <li>a playful space</li>
+                                <li>a productive space</li>
+                                <li>a community space</li>
+                                <li>a lofi-hip hop space</li>
+                            </ul>
+                            Click the door to begin.
                             </Typography>
                             {/* <Button variant="contained" color="primary" fullWidth={true} component={Link} to={'/login'}>Enter</Button> */}
                         </Box>

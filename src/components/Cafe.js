@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cafeDefault from '../assets/cafeDefault.png';
 import cafeOpen from '../assets/cafeOpen.png';
 import cafeWhiteboard from '../assets/cafeWhiteboard.png';
 import cafeSpotify from '../assets/cafeSpotify.png';
+import cafeZoom from '../assets/cafeZoom.png';
 import cafeYT from '../assets/cafeYT.png';
 import { useHistory } from 'react-router-dom';
 
@@ -22,6 +23,12 @@ const useStyles = makeStyles(() => ({
         backgroundSize: 'cover',
     }, spotifyHighlight: {
         backgroundImage: `url(${cafeSpotify})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    }, zoomHighlight: {
+        backgroundImage: `url(${cafeZoom})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -74,6 +81,18 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         outline: 0
     },
+    zoomBtn: {
+        height: '7rem',
+        width: '15rem',
+        position: 'absolute',
+        top: '29rem',
+        left: '20rem',
+        color: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        cursor: 'pointer',
+        outline: 0
+    },
     whiteboardBtn: {
         height: '8rem',
         width: '6rem',
@@ -86,18 +105,24 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         outline: 0
     },
-    spotifyFrame: {
+    spotifyFrameHidden: {
         position: 'absolute',
-        right: '34.5rem',
-        top: '12.5rem',
-        transform: 'rotate(30deg)'
+        right: '1rem',
+        top: '1rem',
+        visibility: 'hidden'
+    },
+    spotifyFrameShow: {
+        position: 'absolute',
+        right: '1rem',
+        top: '1rem',
+        visibility: 'visible'
     }
 }));
 
 export default function Cafe() {
     const classes = useStyles();
     const history = useHistory();
-    const [showSpotify, setShowSpotify] = useState(false);
+    const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
     const [gClass, setGClass] = useState(classes.defaultBackground);
     
     function handleYTHover() {
@@ -115,13 +140,25 @@ export default function Cafe() {
     function handleWhiteboardClick() {
         // TODO: show embedded whiteboard
     }
+
+    function handleZoomHover() {
+        setGClass(classes.zoomHighlight);
+    }
+
+    function handleZoomClick() {
+        // TODO: join zoom meeting
+    }
     
     function handleSpotifyHover() {
         setGClass(classes.spotifyHighlight);
     }
 
     function handleSpotifyClick() {
-        setShowSpotify(!showSpotify);
+        if (sClass === classes.spotifyFrameShow) {
+            setSClass(classes.spotifyFrameHidden);
+        } else {
+            setSClass(classes.spotifyFrameShow)
+        }
     }
     
     function handleDoorHover() {
@@ -142,9 +179,8 @@ export default function Cafe() {
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
             <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
-            { showSpotify && 
-                <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            }
+            <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
+            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
     )
 }

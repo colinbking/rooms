@@ -27,7 +27,7 @@ export default function RoomGrid() {
     return (
         <Grid container spacing={3}>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0} >
                     <CardActionArea component={Link} to={'/gym'}>
                         <CardMedia
                             component="img"
@@ -37,10 +37,10 @@ export default function RoomGrid() {
                             title="Gym"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Gym
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Getting buff: cbk1, sj43
                         </Typography>
                         </CardContent>
@@ -48,7 +48,7 @@ export default function RoomGrid() {
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0}>
                     <CardActionArea component={Link} to={'/cafe'}>
                         <CardMedia
                             component="img"
@@ -58,10 +58,10 @@ export default function RoomGrid() {
                             title="Cafe"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Cafe
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Buying a coffee: leebron
                         </Typography>
                         </CardContent>
@@ -69,7 +69,7 @@ export default function RoomGrid() {
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -79,10 +79,10 @@ export default function RoomGrid() {
                             title="Lounge"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Lounge
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Couch surfing: tmg5
                         </Typography>
                         </CardContent>
@@ -90,7 +90,7 @@ export default function RoomGrid() {
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0} >
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -100,10 +100,10 @@ export default function RoomGrid() {
                             title="Kitchen"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Kitchen
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Cooking up a storm: cmz2
                         </Typography>
                         </CardContent>
@@ -111,7 +111,7 @@ export default function RoomGrid() {
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -121,10 +121,10 @@ export default function RoomGrid() {
                             title="Study room"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Study room
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Studying hard: rixner
                         </Typography>
                         </CardContent>
@@ -132,7 +132,7 @@ export default function RoomGrid() {
                 </Card>
             </Grid>
             <Grid item xs={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} elevation={0}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -142,10 +142,10 @@ export default function RoomGrid() {
                             title="Classroom"
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" align="center">
                             Classroom
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body2" component="p" align="center">
                             Streaming lectures: luay
                         </Typography>
                         </CardContent>
