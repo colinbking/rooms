@@ -28,7 +28,8 @@ export default function ZoomAuth() {
     const history = useHistory();
 
     function handleZoom() {
-        history.push('/home');
+        window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=15DlGcV7RQqgsnwVXLnHsQ&redirect_uri=https://www.roomy-pennapps.space/home";
+        // history.push('/home');
     }
 
     return (

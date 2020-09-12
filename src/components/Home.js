@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Grid, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import RoomGrid from './RoomGrid';
 import Sidebar from './Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
+import useQuery from '../util/useQuery';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
     cont: {
@@ -16,8 +18,19 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default function Login() {
+export default function Home() {
     const classes = useStyles();
+    const history = useHistory();
+    const query = useQuery();
+    const code = query.get("code");
+    
+    // Code is still saved
+    if (code) {
+        // TODO: make api call here
+        
+        alert(code);
+        // history.push('/home');
+    }
     
     return (
         <>

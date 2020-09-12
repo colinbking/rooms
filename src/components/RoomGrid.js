@@ -51,6 +51,27 @@ export default function RoomGrid() {
                     <CardActionArea>
                         <CardMedia
                             component="img"
+                            alt="gymRoom"
+                            height="275"
+                            image={gymRoom}
+                            title="Cafe"
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Cafe
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            Buying a coffee: leebron
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Grid>
+            <Grid item xs={4}>
+                <Card className={classes.card}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
                             alt="loungeRoom"
                             height="275"
                             image={loungeRoom}
@@ -125,27 +146,6 @@ export default function RoomGrid() {
                         </Typography>
                         <Typography variant="body2" component="p">
                             Streaming lectures: luay
-                        </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Grid>
-            <Grid item xs={4}>
-                <Card className={classes.card}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt="gymRoom"
-                            height="275"
-                            image={gymRoom}
-                            title="Cafe"
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Cafe
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            Buying a coffee: leebron
                         </Typography>
                         </CardContent>
                     </CardActionArea>

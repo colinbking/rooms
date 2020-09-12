@@ -37,12 +37,15 @@ export default function Login() {
                     <Grid item xs={6}>
                         <Box className={classes.rightBox}>
                             <Typography variant='h2'>
-                                Welcome to Rooms.
+                                Welcome to Roomy
                             </Typography>
                             <Typography variant='subtitle1'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula dui, eleifend ut leo eu, dictum volutpat est. Praesent a arcu non elit pretium fringilla sed et sem. Suspendisse lacinia egestas metus at faucibus. Maecenas auctor est sit amet turpis ornare, eu vulputate turpis placerat. Donec quis fermentum mi, eu porttitor quam. In ut pretium justo. Vivamus condimentum sapien eget nisi posuere bibendum.
+                                <br />
+                                <br />
+                                Click the door to begin
                             </Typography>
-                            <Button variant="contained" color="primary" fullWidth={true} component={Link} to={'/login'}>Enter</Button>
+                            {/* <Button variant="contained" color="primary" fullWidth={true} component={Link} to={'/login'}>Enter</Button> */}
                         </Box>
                     </Grid>
 

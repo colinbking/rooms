@@ -6,8 +6,14 @@ import gymImgYT from '../assets/gymFullYT.png';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
-    gymDiv: {
+    defaultBackground: {
         backgroundImage: `url(${gymImg})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    }, ytHighlight: {
+        backgroundImage: `url(${gymImgYT})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -60,9 +66,11 @@ export default function Gym() {
     const classes = useStyles();
     const history = useHistory();
     const [showSpotify, setShowSpotify] = useState(false);
+    const [gClass, setGClass] = useState(classes.defaultBackground);
     
     function handleYTHover() {
         // TODO: change image
+        setGClass(classes.ytHighlight);
     }
 
     function handleYTClick() {
@@ -85,13 +93,17 @@ export default function Gym() {
         history.push('/home');
     }
 
+    function resetBackground() {
+        setGClass(classes.defaultBackground);
+    }
+
     return (
-        <div className={classes.gymDiv}>
-            <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onClick={() => handleYTClick()}/>
+        <div className={gClass}>
+            <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onClick={() => handleSpotifyClick()}/>
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onClick={() => handleDoorClick()}/>
             { showSpotify && 
-                <iframe src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="85" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             }
         </div>
     )

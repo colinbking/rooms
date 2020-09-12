@@ -21,7 +21,7 @@ export default function Header() {
           <AppBar position="static">
               <Toolbar>
                 <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
-                <Typography variant="h6">&nbsp;&nbsp;ROOMY</Typography>
+                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>ROOMY</Link></Typography>
               </Toolbar>
           </AppBar>
         </>

@@ -29,6 +29,9 @@ const globalTheme = createMuiTheme({
             dark: '#B4C8CC', // Hover color
             contrastText: '#3E9795', // Dark green text
         },
+        secondary: {
+            main: '#5cf27f'
+        },
         /* Typography colors */
         text: {
             primary: '#43200C', // Brown-ish color
