@@ -30,7 +30,7 @@ export default function App() {
       <ThemeProvider theme={globalTheme}>
         <CssBaseline />
 
-      { location.pathname !== '/gym' && 
+      { location.pathname !== '/gym' && location.pathname !== '/cafe' &&
         <Header />
       }
 

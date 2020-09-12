@@ -7,6 +7,7 @@ const Login = lazy(() => import('../components/Login'));
 const ZoomAuth = lazy(() => import('../components/ZoomAuth'));
 const Home = lazy(() => import('../components/Home'));
 const Gym = lazy(() => import('../components/Gym'));
+const Cafe = lazy(() => import('../components/Cafe'));
 
 
 const routes = [
@@ -14,6 +15,7 @@ const routes = [
   <Route path="/zoomAuth" exact component={ZoomAuth} key="zoomAuth" />,
   <Route path="/home" exact component={Home} key="home" />,
   <Route path="/gym" exact component={Gym} key="gym" />,
+  <Route path="/cafe" exact component={Cafe} key="cafe" />,
   <Route path="/" exact component={Landing} key="landing" />
 ]
 

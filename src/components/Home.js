@@ -35,6 +35,7 @@ export default function Home() {
     // Code is still saved
     if (code) {
         // TODO: make api call here
+        console.log("code: " + code);
         const body = {
             "auth_code" : code
         }

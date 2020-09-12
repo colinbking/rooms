@@ -1,42 +1,42 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import gymDefault from '../assets/gymDefault.png';
-import gymOpen from '../assets/gymOpen.png';
-import gymSpotify from '../assets/gymSpotify.png';
-import gymYT from '../assets/gymYT.png';
+import cafeDefault from '../assets/cafeDefault.png';
+import cafeOpen from '../assets/cafeOpen.png';
+import cafeSpotify from '../assets/cafeSpotify.png';
+import cafeYT from '../assets/cafeYT.png';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
     defaultBackground: {
-        backgroundImage: `url(${gymDefault})`,
+        backgroundImage: `url(${cafeDefault})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, ytHighlight: {
-        backgroundImage: `url(${gymYT})`,
+        backgroundImage: `url(${cafeYT})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, spotifyHighlight: {
-        backgroundImage: `url(${gymSpotify})`,
+        backgroundImage: `url(${cafeSpotify})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, openDoor: {
-        backgroundImage: `url(${gymOpen})`,
+        backgroundImage: `url(${cafeOpen})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-    },youtubeBtn: {
+    }, youtubeBtn: {
         height: '4rem',
         width: '6rem',
         position: 'absolute',
         top: '22.5rem',
-        left: '39rem',
+        left: '43rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
         width: '15rem',
         position: 'absolute',
         top: '3rem',
-        right: '34rem',
+        right: '40rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -57,10 +57,10 @@ const useStyles = makeStyles(() => ({
     },
     doorBtn: {
         height: '25rem',
-        width: '8rem',
+        width: '12rem',
         position: 'absolute',
-        top: '22rem',
-        left: '6rem',
+        top: '24rem',
+        left: '3rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -75,7 +75,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default function Gym() {
+export default function Cafe() {
     const classes = useStyles();
     const history = useHistory();
     const [showSpotify, setShowSpotify] = useState(false);
