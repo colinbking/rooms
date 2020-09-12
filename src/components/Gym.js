@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Grid, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import gymImg from '../assets/gymFull.png';
@@ -48,11 +48,18 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         outline: 0
     },
+    spotifyFrame: {
+        position: 'absolute',
+        right: '34.5rem',
+        top: '12.5rem',
+        transform: 'rotate(30deg)'
+    }
 }));
 
 export default function Gym() {
     const classes = useStyles();
     const history = useHistory();
+    const [showSpotify, setShowSpotify] = useState(false);
     
     function handleYTHover() {
         // TODO: change image
@@ -67,7 +74,7 @@ export default function Gym() {
     }
 
     function handleSpotifyClick() {
-        // TODO: play YT vid
+        setShowSpotify(!showSpotify);
     }
     
     function handleDoorHover() {
@@ -83,6 +90,9 @@ export default function Gym() {
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onClick={() => handleSpotifyClick()}/>
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onClick={() => handleDoorClick()}/>
+            { showSpotify && 
+                <iframe src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="85" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            }
         </div>
     )
 }
