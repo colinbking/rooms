@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import gymDefault from '../assets/gymDefault.png';
 import gymOpen from '../assets/gymOpen.png';
+import gymWhiteboard from '../assets/gymWhiteboard.png';
 import gymSpotify from '../assets/gymSpotify.png';
 import gymYT from '../assets/gymYT.png';
 import { useHistory } from 'react-router-dom';
@@ -31,6 +32,12 @@ const useStyles = makeStyles(() => ({
         backgroundSize: 'cover',
     }, spotifyHighlight: {
         backgroundImage: `url(${gymSpotify})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    }, whiteboardHighlight: {
+        backgroundImage: `url(${gymWhiteboard})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -77,6 +84,18 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         outline: 0
     },
+    whiteboardBtn: {
+        height: '8rem',
+        width: '7rem',
+        position: 'absolute',
+        top: '22rem',
+        right: '27rem',
+        color: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        cursor: 'pointer',
+        outline: 0
+    },
     spotifyFrame: {
         position: 'absolute',
         right: '34.5rem',
@@ -95,17 +114,17 @@ export default function Gym() {
         "username" : localStorage.getItem("username"),
         "id" : 4
     }
-    api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
-    .then(res => {
-        localStorage.setItem("meeting", res.data.meeting);
-        window.open(
-            res.data.meeting,
-            '_blank' // <- This is what makes it open in a new window.
-        );
-    })
-    .catch((err) => {
-        console.log(err.response);
-    })
+    // api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
+    // .then(res => {
+    //     localStorage.setItem("meeting", res.data.meeting);
+    //     window.open(
+    //         res.data.meeting,
+    //         '_blank' // <- This is what makes it open in a new window.
+    //     );
+    // })
+    // .catch((err) => {
+    //     console.log(err.response);
+    // })
     
     function handleYTHover() {
         setGClass(classes.ytHighlight);
@@ -113,6 +132,14 @@ export default function Gym() {
 
     function handleYTClick() {
         // TODO: play YT vid
+    }
+    
+    function handleWhiteboardHover() {
+        setGClass(classes.whiteboardHighlight);
+    }
+
+    function handleWhiteboardClick() {
+        // TODO: show embedded whiteboard
     }
     
     function handleSpotifyHover() {
@@ -140,6 +167,7 @@ export default function Gym() {
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
+            <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
             { showSpotify && 
                 <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={classes.spotifyFrame} width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             }
