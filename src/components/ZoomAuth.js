@@ -27,6 +27,10 @@ export default function ZoomAuth() {
     const classes = useStyles();
     const history = useHistory();
 
+    function handleZoom() {
+        history.push('/home');
+    }
+
     return (
         <>
             <Container className={classes.cont} maxWidth="xs">
@@ -37,10 +41,10 @@ export default function ZoomAuth() {
 
                     <Box className={classes.formBox}>
                         <Button 
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
+                            onClick={() => handleZoom()}
                         >
                             Zoom OAuth
                         </Button>
