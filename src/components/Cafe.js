@@ -297,7 +297,20 @@ export default function Cafe() {
     }
 
     function handleDoorClick() {
-        history.push('/home');
+        // tell api leaving room
+        const body = {
+            "username" : localStorage.getItem("username")
+        }
+        api.put('/cafe/31/left_cafe', body, {headers: headers})
+        .then(res => {
+            console.log(res);
+            // get back new list of active users
+            
+            history.push('/home');
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
     }
 
     function resetBackground() {
