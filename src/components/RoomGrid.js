@@ -59,7 +59,7 @@ export default function RoomGrid() {
             console.log(err.response);
         });
     }
-    
+     
     useEffect(() => {
         getGymActiveUsers();
         getCafeActiveUsers();
