@@ -38,7 +38,7 @@ export default function RoomGrid() {
     function getGymActiveUsers() {
         api.get('/gym/21/whos_active', {headers: headers})
         .then(res => {
-            console.log("whos active res:");
+            console.log("whos gym active res:");
             console.log(res);
             setGymActiveUsers(res.data);
         })
@@ -47,18 +47,11 @@ export default function RoomGrid() {
         });
     }
     
-    useEffect(() => {
-        getGymActiveUsers();
-        const interval = setInterval(() => {
-            getGymActiveUsers();
-        }, 5000)
-        return () => clearInterval(interval);
-    }, [])
-
+    
     function getCafeActiveUsers() {
         api.get('/cafe/31/whos_active', {headers: headers})
         .then(res => {
-            console.log("whos active res:");
+            console.log("whos cafe active res:");
             console.log(res);
             setCafeActiveUsers(res.data);
         })
@@ -68,12 +61,21 @@ export default function RoomGrid() {
     }
     
     useEffect(() => {
+        getGymActiveUsers();
         getCafeActiveUsers();
         const interval = setInterval(() => {
             getCafeActiveUsers();
+            getGymActiveUsers();
         }, 5000)
         return () => clearInterval(interval);
     }, [])
+    // useEffect(() => {
+    //     getCafeActiveUsers();
+    //     const interval = setInterval(() => {
+    //         getCafeActiveUsers();
+    //     }, 5000)
+    //     return () => clearInterval(interval);
+    // }, [])
 
 
     return (
@@ -106,7 +108,7 @@ export default function RoomGrid() {
                                 }
                             })}
                             {
-                                cafeActiveUsers.length === 0 &&
+                                gymActiveUsers.length === 0 &&
                                 <span>No one's here yet!</span>
                             }
 
