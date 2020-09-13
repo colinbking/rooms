@@ -9,6 +9,10 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   logo: {
     maxHeight: '3rem'
+  },
+  header: {
+    backgroundColor: 'white',
+    marginTop: '1rem'
   }
 }));
 
@@ -18,12 +22,13 @@ export default function Header() {
 
     return (
         <>
-          <AppBar elevation={0} position="static">
+          <AppBar elevation={0} position="static" className={classes.header}>
               <Toolbar>
                 <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
-                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>ROOMY</Link></Typography>
+                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
               </Toolbar>
           </AppBar>
         </>
     );
 }
+

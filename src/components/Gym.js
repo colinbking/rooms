@@ -8,10 +8,10 @@ import gymZoom from '../assets/gymZoom.png';
 import gymYT from '../assets/gymYT.png';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
+import { Button } from '@material-ui/core';
 
 const api = Axios.create({
     baseURL: 'https://papps2020.uc.r.appspot.com/'
-    // baseURL: 'https://20200912t152951-dot-papps2020.uc.r.appspot.com/'
 });
 const headers = {
     'Content-Type': 'application/json'
@@ -160,6 +160,7 @@ export default function Gym() {
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
     const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
     const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    const [ytLink, setYTLink] = useState("https://www.youtube.com/embed/2pLT-olgUJs?autoplay=1");
     
     
     function handleYTHover() {
@@ -167,10 +168,26 @@ export default function Gym() {
     }
 
     function handleYTClick() {
+        
+        // TODO: don't play in background
+        
         if (yClass === classes.ytFrameShow) {
             setYClass(classes.ytFrameHidden);
         } else {
-            setYClass(classes.ytFrameShow)
+            let t = 0;
+            api.get('/gym/21/join_workout', {headers: headers})
+            .then(res => {
+                console.log(res);
+                // get back time stamp in seconds
+                t = res.data.time;
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+
+            setYTLink(ytLink + "&start=" + t);
+
+            setYClass(classes.ytFrameShow);
         }
     }
     
@@ -191,22 +208,26 @@ export default function Gym() {
     }
 
     function handleZoomClick() {
-        // Join/create zoom meeting
+        // Get/create zoom meeting
         const body = {
             "username" : localStorage.getItem("username"),
-            "id" : 4
-        }        
+            "id" : localStorage.getItem("id")
+        }
+        // TODO: this should be called immediately upon entry
         api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
         .then(res => {
             localStorage.setItem("meeting", res.data.meeting);
-            window.open(
-                res.data.meeting,
-                '_blank' // <- This is what makes it open in a new window.
-            );
+            
         })
         .catch((err) => {
             console.log(err.response);
         })
+
+        // Join zoom meeting
+        window.open(
+            localStorage.getItem("meeting"),
+            '_blank' // <- This is what makes it open in a new window.
+        );
     }
     
     function handleSpotifyHover() {
@@ -226,11 +247,52 @@ export default function Gym() {
     }
 
     function handleDoorClick() {
-        history.push('/home');
+        // tell api leaving room
+        const body = {
+            "username" : localStorage.getItem("username")
+        }
+        api.put('/gym/21/left_gym', body, {headers: headers})
+        .then(res => {
+            console.log(res);
+            // get back new list of active users
+            
+            history.push('/home');
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
     }
 
     function resetBackground() {
         setGClass(classes.defaultBackground);
+    }
+
+    function handleChat() {
+        const body = {
+            "note" : "asdflkjasdlfkjdsalkf"
+        }
+        // TODO: note is a field in room info
+        api.post('/gym/21/set_note', body, {headers: headers})
+        .then(res => {
+            console.log(res);
+            // get back note
+            
+            // update field here
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
+    }
+    function handleGetChat() {
+        // TODO: note is a field in room info
+        api.get('/gym/21', {headers: headers})
+        .then(res => {
+            console.log(res);
+            // need to parse note
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
     }
 
     return (
@@ -242,7 +304,9 @@ export default function Gym() {
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
             <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680679-5793-8386"></iframe>
-            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/2pLT-olgUJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe title="youtube" className={yClass} width="560" height="315" src={ytLink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <Button onClick={() => handleChat()}>chat</Button>
+            <Button onClick={() => handleGetChat()}>get chat</Button>
         </div>
     )
 }

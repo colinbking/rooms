@@ -4,7 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Form } from 'formik';
 import TextInputField from './TextInputField';
+import Axios from 'axios';
 
+const api = Axios.create({
+    baseURL: 'https://papps2020.uc.r.appspot.com/'
+});
+const headers = {
+    'Content-Type': 'application/json'
+}
 
 const useStyles = makeStyles(() => ({
     cont: {
@@ -22,6 +29,9 @@ const useStyles = makeStyles(() => ({
         boxShadow: '0px 3px 6px #00000029',
         borderRadius: '15px',
         padding: '2rem 1.5rem'
+    },
+    inputField: {
+        // marginBottome: '1rem'
     }
 }));
 
@@ -39,14 +49,23 @@ export default function Login() {
 
                     <Box className={classes.formBox}>
                         <Formik
-                            initialValues={{ username: ''}}
+                            initialValues={{ username: '', email: ''}}
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
-                                    // TODO: make api call here
-
-                                    localStorage.setItem("username", values.username);
-                                    
-                                    history.push('/zoomAuth');
+                                    const body = {
+                                        "username" : values.username,
+                                        "email" : values.email
+                                    }        
+                                    api.post('/user/signup', body, {headers: headers})
+                                    .then(res => {
+                                        console.log(res);
+                                        localStorage.setItem("id", res.data.id);
+                                        localStorage.setItem("username", values.username);
+                                        history.push('/spotifyAuth');
+                                    })
+                                    .catch((err) => {
+                                        console.log(err.response);
+                                    })
 
                                     setSubmitting(false);
                                 }, 400)
@@ -65,6 +84,19 @@ export default function Login() {
                                             InputProps={{
                                                 className: classes.inputText,
                                                 placeholder: "Username"
+                                            }}
+                                            InputLabelProps={{
+                                                shrink: true
+                                            }}
+                                            fullWidth
+                                        />
+                                        <TextInputField
+                                            variant="outlined"
+                                            name="email"
+                                            className={classes.inputField}
+                                            InputProps={{
+                                                className: classes.inputText,
+                                                placeholder: "Zoom email"
                                             }}
                                             InputLabelProps={{
                                                 shrink: true

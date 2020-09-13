@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,14 @@ import gymRoom from '../assets/gymRoom.png';
 import kitchenRoom from '../assets/kitchenRoom.png';
 import labRoom from '../assets/labRoom.png';
 import loungeRoom from '../assets/loungeRoom.png';
+import Axios from 'axios';
+
+const api = Axios.create({
+    baseURL: 'https://papps2020.uc.r.appspot.com/'
+});
+const headers = {
+    'Content-Type': 'application/json'
+}
 
 
 const useStyles = makeStyles(() => ({
@@ -24,6 +32,19 @@ const useStyles = makeStyles(() => ({
 
 export default function RoomGrid() {
     const classes = useStyles();
+
+    useEffect(() => {
+        // TODO: read and map this
+        // cafe ID: 31
+        api.get('/gym/21/whos_active', {headers: headers})
+        .then(res => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
+    }, [])
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={4}>

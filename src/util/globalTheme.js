@@ -25,12 +25,12 @@ const globalTheme = createMuiTheme({
     palette: {
         /* Theme colors */
         primary: {
-            main: '#CAE1E6', // Light blue for buttons
-            dark: '#B4C8CC', // Hover color
-            contrastText: '#3E9795', // Dark green text
+            main: '#0d72ed', // Light blue for buttons
+            contrastText: '#FFFFFF', 
         },
         secondary: {
-            main: '#a9db63'
+            main: '#1cb953',
+            contrastText: '#FFFFFF',
         },
         /* Typography colors */
         text: {
@@ -44,7 +44,7 @@ const globalTheme = createMuiTheme({
         subtitle2: {
             fontSize: 18
         },
-        button: {
+        button: { 
             textTransform: 'none',
             fontWeight: '700',
             fontSize: '1rem',
