@@ -55,7 +55,7 @@ export default function Login() {
                                     const body = {
                                         "username" : values.username,
                                         "email" : values.email
-                                    }        
+                                    }
                                     api.post('/user/login', body, {headers: headers})
                                     .then(res => {
                                         console.log(res);
