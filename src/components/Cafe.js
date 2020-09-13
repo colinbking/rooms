@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cafeDefault from '../assets/cafeDefault.png';
+import cafeDefault2 from '../assets/cafeDefault2.png';
 import cafeOpen from '../assets/cafeOpen.png';
 import cafeWhiteboard from '../assets/cafeWhiteboard.png';
 import cafeSpotify from '../assets/cafeSpotify.png';
@@ -24,7 +25,17 @@ const useStyles = makeStyles(() => ({
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-    }, ytHighlight: {
+    }, defaultBackground2: {
+        backgroundImage: `url(${cafeDefault2})`,
+        height: '99.1vh',
+        width: '99.1vw',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        position: 'absolute',
+        zIndex: -99
+    }, 
+    ytHighlight: {
         backgroundImage: `url(${cafeYT})`,
         height: '100vh',
         backgroundPosition: 'center',
@@ -293,17 +304,20 @@ export default function Cafe() {
     }
 
     return (
-        <div className={cClass}>
-            <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
-            <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
-            <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
-            <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
-            <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
-            <button className={classes.tomatoBtn} onMouseEnter={() => handleTomatoHover()} onMouseOut={() => resetBackground()} onClick={() => handleTomatoClick()}/>
-            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
-            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            <iframe title="timer" className={tClass} src="http://www.pomofocus.io/" width="330" height="300" frameBorder="0" allowtransparency="true"></iframe>
-        </div>
+        <>
+            <div className={classes.defaultBackground2}></div>
+            <div className={cClass}>
+                <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
+                <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
+                <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
+                <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
+                <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
+                <button className={classes.tomatoBtn} onMouseEnter={() => handleTomatoHover()} onMouseOut={() => resetBackground()} onClick={() => handleTomatoClick()}/>
+                <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
+                <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe title="timer" className={tClass} src="http://www.pomofocus.io/" width="330" height="300" frameBorder="0" allowtransparency="true"></iframe>
+            </div>
+        </>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import gymDefault from '../assets/gymDefault.png';
+import gymDefault2 from '../assets/gymDefault2.png';
 import gymOpen from '../assets/gymOpen.png';
 import gymWhiteboard from '../assets/gymWhiteboard.png';
 import gymSpotify from '../assets/gymSpotify.png';
@@ -25,6 +26,18 @@ const useStyles = makeStyles(() => ({
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+    }, 
+    defaultBackground2: {
+        backgroundImage: `url(${gymDefault2})`,
+        height: '98vh',
+        width: '98vw',
+        top: '5px',
+        left: '4px',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        position: 'absolute',
+        zIndex: -99
     }, ytHighlight: {
         backgroundImage: `url(${gymYT})`,
         height: '100vh',
@@ -172,6 +185,8 @@ export default function Gym() {
         }
         api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
         .then(res => {
+            console.log("joined_gym res:");
+            console.log(res);
             localStorage.setItem("meeting", res.data.meeting);
             console.log("successfully set meeting in local storage");
         })
@@ -309,6 +324,8 @@ export default function Gym() {
     }
 
     return (
+        <>
+        <div className={classes.defaultBackground2}></div>
         <div className={gClass}>
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
@@ -323,5 +340,6 @@ export default function Gym() {
             <Button onClick={() => handleChat()}>chat</Button>
             <Button onClick={() => handleGetChat()}>get chat</Button>
         </div>
+        </>
     )
 }
