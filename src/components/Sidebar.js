@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, List, ListItem, ListItemIcon, Typography, ListItemText, Divider } from '@material-ui/core';
+import { Box, Button, Grid, List, ListItem, ListItemIcon, Typography, ListItemText, Divider } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import pfp from '../assets/pfp.png';
 import Axios from 'axios';
@@ -41,6 +42,7 @@ const useStyles = makeStyles(() => ({
 export default function Sidebar() {
     const classes = useStyles();
     const [activeUsers, setActiveUsers] = useState([]);
+    const history = useHistory();
 
     function getAllActiveUsers() {
         api.get('/br/11/whos_active', {headers: headers})
@@ -48,6 +50,20 @@ export default function Sidebar() {
             console.log("whos active res:");
             console.log(res);
             setActiveUsers(res.data);
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
+    }
+
+    function handleLogout() {
+        const body = {
+            "username" : localStorage.getItem("username")
+        }
+        api.post('/br/11/left_br', body, {headers: headers})
+        .then(res => {
+            console.log('left big room');
+            history.pushState('/');
         })
         .catch((err) => {
             console.log(err.response);
@@ -101,6 +117,14 @@ export default function Sidebar() {
                         );
                     })}
                 </List>
+                <br />
+                <Button 
+                    variant="contained"
+                    fullWidth
+                    onClick={() => handleLogout()}
+                >
+                    Logout
+                </Button>
             </Box>
         </Box>
     )

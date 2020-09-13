@@ -1,19 +1,24 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import logo from '../assets/gymRoom.png';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    maxHeight: '3rem'
+    maxHeight: '5rem'
   },
   header: {
     backgroundColor: 'white',
     marginTop: '1rem'
-  }
+  },
+  logoBox: {
+      // backgroundColor: '#e8e8e8',
+  },
+  logoText: {
+      marginTop: '1.25rem',
+  },
 }));
 
 export default function Header() {
@@ -22,12 +27,12 @@ export default function Header() {
 
     return (
         <>
-          <AppBar elevation={0} position="static" className={classes.header}>
-              <Toolbar>
-                <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
-                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
-              </Toolbar>
-          </AppBar>
+          <Box display="flex" flexDirection="row" className={classes.logoBox}>
+              <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>
+              <Box className={classes.logoText}>
+                  <Typography variant="h4">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
+              </Box>
+          </Box>
         </>
     );
 }
