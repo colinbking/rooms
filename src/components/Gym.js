@@ -180,7 +180,7 @@ export default function Gym() {
 
         // Updating spotify playlist
         // TODO: for cafe, is .../cafe
-        api.put('/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
+        api.put('/user/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
         .then(res => {
             console.log("successfully added to playlist");
         })
