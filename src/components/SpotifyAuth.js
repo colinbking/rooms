@@ -36,7 +36,7 @@ export default function SpotifyAuth() {
     const history = useHistory();
 
     function handleSpotify() {
-        api.get('/user/' + localStorage.getItem("username") + '/get_spotify_info')
+        api.get('/user/' + localStorage.getItem("username") + '/get_spotify_info', {headers: headers})
         // api.get('/user/tmg5/get_spotify_info')
         .then(res => {
             console.log(res);
