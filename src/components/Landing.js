@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
         marginTop: '1rem'
     },
     rightBox: {
-        marginRight: '2rem',
+        marginRight: '2rem', //asdf
         marginLeft: '-2rem'
     },
     img: {

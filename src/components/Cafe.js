@@ -216,6 +216,7 @@ export default function Cafe() {
         .catch((err) => {
             console.log(err.response);
         })
+        // adding a comment here
 
         // Updating spotify playlist
         api.get('/user/add_playlist/cafe/' + localStorage.getItem("username"), {headers: headers})
