@@ -63,7 +63,7 @@ export default function Sidebar() {
         api.post('/br/11/left_br', body, {headers: headers})
         .then(res => {
             console.log('left big room');
-            history.pushState('/');
+            history.push('/');
         })
         .catch((err) => {
             console.log(err.response);
