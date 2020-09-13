@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cafeDefault from '../assets/cafeDefault.png';
 import cafeOpen from '../assets/cafeOpen.png';
 import cafeWhiteboard from '../assets/cafeWhiteboard.png';
 import cafeSpotify from '../assets/cafeSpotify.png';
+import cafeTomato from '../assets/cafeTomato.png';
 import cafeZoom from '../assets/cafeZoom.png';
 import cafeYT from '../assets/cafeYT.png';
 import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
+
+const api = Axios.create({
+    baseURL: 'https://papps2020.uc.r.appspot.com/'
+});
+const headers = {
+    'Content-Type': 'application/json'
+}
 
 const useStyles = makeStyles(() => ({
     defaultBackground: {
@@ -35,6 +44,12 @@ const useStyles = makeStyles(() => ({
         backgroundSize: 'cover',
     }, whiteboardHighlight: {
         backgroundImage: `url(${cafeWhiteboard})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    }, tomatoHighlight: {
+        backgroundImage: `url(${cafeTomato})`,
         height: '100vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -105,6 +120,18 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         outline: 0
     },
+    tomatoBtn: {
+        height: '6rem',
+        width: '6rem',
+        position: 'absolute',
+        top: '36rem',
+        right: '31rem',
+        color: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        cursor: 'pointer',
+        outline: 0
+    },
     spotifyFrameHidden: {
         position: 'absolute',
         right: '1rem',
@@ -140,6 +167,18 @@ const useStyles = makeStyles(() => ({
         left: '1rem',
         top: '1rem',
         visibility: 'hidden'
+    }, 
+    tomatoFrameShow: {
+        position: 'absolute',
+        left: '1rem',
+        bottom: '1rem',
+        visibility: 'visible'
+    },
+    tomatoFrameHidden: {
+        position: 'absolute',
+        left: '1rem',
+        bottom: '1rem',
+        visibility: 'hidden'
     },
 }));
 
@@ -147,12 +186,40 @@ export default function Cafe() {
     const classes = useStyles();
     const history = useHistory();
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
-    const [gClass, setGClass] = useState(classes.defaultBackground);
+    const [cClass, setCClass] = useState(classes.defaultBackground);
     const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
     const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    const [tClass, setTClass] = useState(classes.tomatoFrameHidden);
+
+    useEffect(() => {
+        // Get/create zoom meeting
+        const body = {
+            "username" : localStorage.getItem("username"),
+            "id" : localStorage.getItem("id")
+        }
+        api.put('/cafe/' + localStorage.getItem("cafe_id") + '/joined_cafe', body, {headers: headers})
+        .then(res => {
+            localStorage.setItem("meeting", res.data.meeting);
+            console.log("successfully set meeting in local storage");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
+
+        // Updating spotify playlist
+        // TODO: for cafe, is .../cafe
+        api.put('/add_playlist/cafe/' + localStorage.getItem("username"), body, {headers: headers})
+        .then(res => {
+            console.log("successfully added to playlist");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
+
+    }, [])
 
     function handleYTHover() {
-        setGClass(classes.ytHighlight);
+        setCClass(classes.ytHighlight);
     }
 
     function handleYTClick() {
@@ -164,7 +231,7 @@ export default function Cafe() {
     }
 
     function handleWhiteboardHover() {
-        setGClass(classes.whiteboardHighlight);
+        setCClass(classes.whiteboardHighlight);
     }
 
     function handleWhiteboardClick() {
@@ -176,30 +243,22 @@ export default function Cafe() {
     }
 
     function handleZoomHover() {
-        setGClass(classes.zoomHighlight);
+        setCClass(classes.zoomHighlight);
     }
 
     function handleZoomClick() {
-        // Join/create zoom meeting
-        // const body = {
-        //     "username" : localStorage.getItem("username"),
-        //     "id" : 4
-        // }        
-        // api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
-        // .then(res => {
-        //     localStorage.setItem("meeting", res.data.meeting);
-        //     window.open(
-        //         res.data.meeting,
-        //         '_blank' // <- This is what makes it open in a new window.
-        //     );
-        // })
-        // .catch((err) => {
-        //     console.log(err.response);
-        // })
+        // Join zoom meeting
+        const mtg = localStorage.getItem("meeting");
+        if (mtg) {
+            window.open(
+                mtg,
+                '_blank' // <- This is what makes it open in a new window.
+            );
+        }
     }
     
     function handleSpotifyHover() {
-        setGClass(classes.spotifyHighlight);
+        setCClass(classes.spotifyHighlight);
     }
 
     function handleSpotifyClick() {
@@ -209,9 +268,21 @@ export default function Cafe() {
             setSClass(classes.spotifyFrameShow)
         }
     }
+
+    function handleTomatoHover() {
+        setCClass(classes.tomatoHighlight);
+    }
+
+    function handleTomatoClick() {
+        if (tClass === classes.tomatoFrameShow) {
+            setTClass(classes.tomatoFrameHidden);
+        } else {
+            setTClass(classes.tomatoFrameShow)
+        }
+    }
     
     function handleDoorHover() {
-        setGClass(classes.openDoor);
+        setCClass(classes.openDoor);
     }
 
     function handleDoorClick() {
@@ -219,19 +290,21 @@ export default function Cafe() {
     }
 
     function resetBackground() {
-        setGClass(classes.defaultBackground);
+        setCClass(classes.defaultBackground);
     }
 
     return (
-        <div className={gClass}>
+        <div className={cClass}>
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
             <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
-            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <button className={classes.tomatoBtn} onMouseEnter={() => handleTomatoHover()} onMouseOut={() => resetBackground()} onClick={() => handleTomatoClick()}/>
+            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
-            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe title="timer" className={tClass} src="http://www.pomofocus.io/" width="330" height="300" frameBorder="0" allowtransparency="true"></iframe>
         </div>
     )
 }
