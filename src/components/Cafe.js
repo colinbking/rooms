@@ -298,6 +298,7 @@ export default function Cafe() {
 
     function handleDoorClick() {
         // tell api leaving room
+        // foo
         const body = {
             "username" : localStorage.getItem("username")
         }
