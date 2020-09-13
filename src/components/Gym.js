@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import gymDefault from '../assets/gymDefault.png';
 import gymOpen from '../assets/gymOpen.png';
@@ -10,8 +10,8 @@ import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
 const api = Axios.create({
-    // baseURL: 'https://papps2020.uc.r.appspot.com/'
-    baseURL: 'https://20200912t152951-dot-papps2020.uc.r.appspot.com/'
+    baseURL: 'https://papps2020.uc.r.appspot.com/'
+    // baseURL: 'https://20200912t152951-dot-papps2020.uc.r.appspot.com/'
 });
 const headers = {
     'Content-Type': 'application/json'
@@ -127,6 +127,30 @@ const useStyles = makeStyles(() => ({
         top: '1rem',
         visibility: 'hidden'
     },
+    whiteboardFrameShow: {
+        position: 'absolute',
+        right: '1rem',
+        bottom: '1rem',
+        visibility: 'visible'
+    },
+    whiteboardFrameHidden: {
+        position: 'absolute',
+        right: '1rem',
+        bottom: '1rem',
+        visibility: 'hidden'
+    },
+    ytFrameShow: {
+        position: 'absolute',
+        left: '1rem',
+        top: '1rem',
+        visibility: 'visible'
+    },
+    ytFrameHidden: {
+        position: 'absolute',
+        left: '1rem',
+        top: '1rem',
+        visibility: 'hidden'
+    },
 }));
 
 export default function Gym() {
@@ -134,8 +158,40 @@ export default function Gym() {
     const history = useHistory();
     const [gClass, setGClass] = useState(classes.defaultBackground);
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
+    const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
+    const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    
+    
+    function handleYTHover() {
+        setGClass(classes.ytHighlight);
+    }
 
-    useEffect(() => {
+    function handleYTClick() {
+        if (yClass === classes.ytFrameShow) {
+            setYClass(classes.ytFrameHidden);
+        } else {
+            setYClass(classes.ytFrameShow)
+        }
+    }
+    
+    function handleWhiteboardHover() {
+        setGClass(classes.whiteboardHighlight);
+    }
+
+    function handleWhiteboardClick() {
+        if (wClass === classes.whiteboardFrameShow) {
+            setWClass(classes.whiteboardFrameHidden);
+        } else {
+            setWClass(classes.whiteboardFrameShow)
+        }
+    }
+
+    function handleZoomHover() {
+        setGClass(classes.zoomHighlight);
+    }
+
+    function handleZoomClick() {
+        // Join/create zoom meeting
         const body = {
             "username" : localStorage.getItem("username"),
             "id" : 4
@@ -151,31 +207,6 @@ export default function Gym() {
         .catch((err) => {
             console.log(err.response);
         })
-    }, [])
-    
-    
-    function handleYTHover() {
-        setGClass(classes.ytHighlight);
-    }
-
-    function handleYTClick() {
-        // TODO: play YT vid
-    }
-    
-    function handleWhiteboardHover() {
-        setGClass(classes.whiteboardHighlight);
-    }
-
-    function handleWhiteboardClick() {
-        // TODO: show embedded whiteboard
-    }
-
-    function handleZoomHover() {
-        setGClass(classes.zoomHighlight);
-    }
-
-    function handleZoomClick() {
-        // TODO: open zoom meeting
     }
     
     function handleSpotifyHover() {
@@ -210,6 +241,8 @@ export default function Gym() {
             <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
             <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680679-5793-8386"></iframe>
+            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/2pLT-olgUJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     )
 }

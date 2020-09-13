@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cafeDefault from '../assets/cafeDefault.png';
 import cafeOpen from '../assets/cafeOpen.png';
@@ -116,7 +116,31 @@ const useStyles = makeStyles(() => ({
         right: '1rem',
         top: '1rem',
         visibility: 'visible'
-    }
+    },
+    whiteboardFrameShow: {
+        position: 'absolute',
+        right: '1rem',
+        bottom: '1rem',
+        visibility: 'visible'
+    },
+    whiteboardFrameHidden: {
+        position: 'absolute',
+        right: '1rem',
+        bottom: '1rem',
+        visibility: 'hidden'
+    },
+    ytFrameShow: {
+        position: 'absolute',
+        left: '1rem',
+        top: '1rem',
+        visibility: 'visible'
+    },
+    ytFrameHidden: {
+        position: 'absolute',
+        left: '1rem',
+        top: '1rem',
+        visibility: 'hidden'
+    },
 }));
 
 export default function Cafe() {
@@ -124,13 +148,19 @@ export default function Cafe() {
     const history = useHistory();
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
     const [gClass, setGClass] = useState(classes.defaultBackground);
-    
+    const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
+    const [yClass, setYClass] = useState(classes.ytFrameHidden);
+
     function handleYTHover() {
         setGClass(classes.ytHighlight);
     }
 
     function handleYTClick() {
-        // TODO: play YT vid
+        if (yClass === classes.ytFrameShow) {
+            setYClass(classes.ytFrameHidden);
+        } else {
+            setYClass(classes.ytFrameShow)
+        }
     }
 
     function handleWhiteboardHover() {
@@ -138,7 +168,11 @@ export default function Cafe() {
     }
 
     function handleWhiteboardClick() {
-        // TODO: show embedded whiteboard
+        if (wClass === classes.whiteboardFrameShow) {
+            setWClass(classes.whiteboardFrameHidden);
+        } else {
+            setWClass(classes.whiteboardFrameShow)
+        }
     }
 
     function handleZoomHover() {
@@ -146,7 +180,22 @@ export default function Cafe() {
     }
 
     function handleZoomClick() {
-        // TODO: join zoom meeting
+        // Join/create zoom meeting
+        // const body = {
+        //     "username" : localStorage.getItem("username"),
+        //     "id" : 4
+        // }        
+        // api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
+        // .then(res => {
+        //     localStorage.setItem("meeting", res.data.meeting);
+        //     window.open(
+        //         res.data.meeting,
+        //         '_blank' // <- This is what makes it open in a new window.
+        //     );
+        // })
+        // .catch((err) => {
+        //     console.log(err.response);
+        // })
     }
     
     function handleSpotifyHover() {
@@ -181,6 +230,8 @@ export default function Cafe() {
             <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
             <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
+            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     )
 }
