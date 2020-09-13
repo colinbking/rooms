@@ -225,10 +225,10 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Study room
+                            Office
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Studying hard: rixner
+                            Working hard: rixner
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -246,7 +246,7 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Classroom
+                            Class
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             Streaming lectures: luay

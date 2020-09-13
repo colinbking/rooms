@@ -56,7 +56,7 @@ export default function Login() {
                                         "username" : values.username,
                                         "email" : values.email
                                     }        
-                                    api.post('/user/signup', body, {headers: headers})
+                                    api.post('/user/login', body, {headers: headers})
                                     .then(res => {
                                         console.log(res);
                                         localStorage.setItem("id", res.data.id);
