@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import RoomGrid from './RoomGrid';
 import Sidebar from './Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import useQuery from '../util/useQuery';
 // import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
+import logo from '../assets/gymRoom.png';
 
 const api = Axios.create({
     baseURL: 'https://papps2020.uc.r.appspot.com/'
@@ -23,6 +25,13 @@ const useStyles = makeStyles(() => ({
     },
     card: {
 
+    },
+    logo: {
+        maxHeight: '5rem',
+    },
+    logoBox: {
+        marginBottom: '1rem',
+        backgroundColor: '#e8e8e8'
     }
 }));
 
@@ -63,6 +72,10 @@ export default function Home() {
     
     return (
         <>
+            <Box display="flex" flexDirection="row" className={classes.logoBox}>
+                <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
+                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
+            </Box>
             <Grid container spacing={0}>
                 <Grid item xs={2}>
                     <Sidebar />

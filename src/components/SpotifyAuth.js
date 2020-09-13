@@ -6,6 +6,7 @@ import Axios from 'axios';
 
 const api = Axios.create({
     baseURL: 'https://papps2020.uc.r.appspot.com/'
+    // baseURL: 'http://localhost:8080/'
 });
 const headers = {
     'Content-Type': 'application/json'
@@ -35,11 +36,11 @@ export default function SpotifyAuth() {
     const history = useHistory();
 
     function handleSpotify() {
-        // api.get('/user/' + localStorage.getItem("username") + '/get_spotify_info')
-        api.get('/user/tmg5/get_spotify_info')
-        .then(res => {            
+        api.get('/user/' + localStorage.getItem("username") + '/get_spotify_info')
+        // api.get('/user/tmg5/get_spotify_info')
+        .then(res => {
             console.log(res);
-            // history.push('/zoomAuth');
+            history.push('/zoomAuth');
         })
         .catch((err) => {
             console.log(err.response);

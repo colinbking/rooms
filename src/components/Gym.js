@@ -145,12 +145,12 @@ const useStyles = makeStyles(() => ({
         top: '1rem',
         visibility: 'visible'
     },
-    ytFrameHidden: {
-        position: 'absolute',
-        left: '1rem',
-        top: '1rem',
-        visibility: 'hidden'
-    },
+    // ytFrameHidden: {
+    //     position: 'absolute',
+    //     left: '1rem',
+    //     top: '1rem',
+    //     visibility: 'hidden'
+    // },
 }));
 
 export default function Gym() {
@@ -159,7 +159,8 @@ export default function Gym() {
     const [gClass, setGClass] = useState(classes.defaultBackground);
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
     const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
-    const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    // const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    const [showYT, setShowYT] = useState(false);
     const [ytLink, setYTLink] = useState("https://www.youtube.com/embed/2pLT-olgUJs?autoplay=1");
     
     
@@ -171,8 +172,8 @@ export default function Gym() {
         
         // TODO: don't play in background
         
-        if (yClass === classes.ytFrameShow) {
-            setYClass(classes.ytFrameHidden);
+        if (showYT === true) {
+            setShowYT(false);
         } else {
             let t = 0;
             api.get('/gym/21/join_workout', {headers: headers})
@@ -187,7 +188,7 @@ export default function Gym() {
 
             setYTLink(ytLink + "&start=" + t);
 
-            setYClass(classes.ytFrameShow);
+            setShowYT(true);
         }
     }
     
@@ -222,6 +223,18 @@ export default function Gym() {
         .catch((err) => {
             console.log(err.response);
         })
+
+        // Updating spotify playlist
+        // TODO: for cafe, is .../cafe
+        api.put('/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
+        .then(res => {
+            console.log("successfully added to playlist");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
+
+
 
         // Join zoom meeting
         window.open(
@@ -304,7 +317,9 @@ export default function Gym() {
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
             <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680679-5793-8386"></iframe>
-            <iframe title="youtube" className={yClass} width="560" height="315" src={ytLink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            { showYT && 
+                <iframe title="youtube" className={classes.ytFrameShow} width="560" height="315" src={ytLink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            }
             <Button onClick={() => handleChat()}>chat</Button>
             <Button onClick={() => handleGetChat()}>get chat</Button>
         </div>
