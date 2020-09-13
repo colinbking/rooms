@@ -39,11 +39,11 @@ export default function Login() {
                     <Grid item xs={6}>
                         <Box className={classes.rightBox}>
                             <Typography variant='h3'>
-                                Welcome to Roomy...
+                                It's Roomy in here...
                             </Typography>
                             <Typography variant='subtitle2'>
                             <br/>
-                            A space that connects people in any and every way! Anyone from friends to family to classmates can spend quality time together as if they were right by each other. 
+                            Roomy is a space that connects people in any and every way! Anyone from friends to family to classmates can spend quality time together as if they were right by each other. 
                             With music as a binding medium, soothing, exciting, and setting the atmosphere, our rooms are open to all. So come on in, it’s roomy in here!
                             <br /><br />
                             Click the door to begin.
