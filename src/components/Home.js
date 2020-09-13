@@ -72,12 +72,12 @@ export default function Home() {
     
     return (
         <>
-            <Box display="flex" flexDirection="row" className={classes.logoBox}>
-                <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
-                <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
-            </Box>
             <Grid container spacing={0}>
                 <Grid item xs={2}>
+                    <Box display="flex" flexDirection="row" className={classes.logoBox}>
+                        <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
+                        <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
+                    </Box>
                     <Sidebar />
                 </Grid>
                 <Grid item xs={10}>
