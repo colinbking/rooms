@@ -161,7 +161,8 @@ export default function Gym() {
     const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
     // const [yClass, setYClass] = useState(classes.ytFrameHidden);
     const [showYT, setShowYT] = useState(false);
-    const [ytLink, setYTLink] = useState("https://www.youtube.com/embed/2pLT-olgUJs?autoplay=1");
+    const [ytLink, setYTLink] = useState("https://www.youtube.com/embed/cfetualiJqs?autoplay=1");
+    const baseYT = "https://www.youtube.com/embed/cfetualiJqs?autoplay=1";
     
     useEffect(() => {
         // Get/create zoom meeting
@@ -180,7 +181,7 @@ export default function Gym() {
 
         // Updating spotify playlist
         // TODO: for cafe, is .../cafe
-        api.put('/user/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
+        api.get('/user/add_playlist/gym/' + localStorage.getItem("username"), {headers: headers})
         .then(res => {
             console.log("successfully added to playlist");
         })
@@ -199,19 +200,19 @@ export default function Gym() {
             setShowYT(false);
         } else {
             let t = 0;
-            api.get('/gym/21/join_workout', {headers: headers})
+            api.get('/gym/21/workout', {headers: headers})
             .then(res => {
                 console.log(res);
                 // get back time stamp in seconds
                 t = res.data.time;
+                setYTLink(baseYT + "&start=" + t);
+                console.log("ytLink: " + ytLink);
+
+                setShowYT(true);
             })
             .catch((err) => {
                 console.log(err.response);
             });
-
-            setYTLink(ytLink + "&start=" + t);
-
-            setShowYT(true);
         }
     }
     

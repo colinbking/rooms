@@ -207,8 +207,7 @@ export default function Cafe() {
         })
 
         // Updating spotify playlist
-        // TODO: for cafe, is .../cafe
-        api.put('/user/add_playlist/cafe/' + localStorage.getItem("username"), body, {headers: headers})
+        api.get('/user/add_playlist/cafe/' + localStorage.getItem("username"), {headers: headers})
         .then(res => {
             console.log("successfully added to playlist");
         })
@@ -303,7 +302,7 @@ export default function Cafe() {
             <button className={classes.tomatoBtn} onMouseEnter={() => handleTomatoHover()} onMouseOut={() => resetBackground()} onClick={() => handleTomatoClick()}/>
             <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
-            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <iframe title="timer" className={tClass} src="http://www.pomofocus.io/" width="330" height="300" frameBorder="0" allowtransparency="true"></iframe>
         </div>
     )
