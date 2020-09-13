@@ -3,6 +3,7 @@ import { Box, Button, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const api = Axios.create({
     baseURL: 'https://papps2020.uc.r.appspot.com/'
@@ -68,6 +69,8 @@ export default function SpotifyAuth() {
                             Sign in to Spotify
                         </Button>
                     </Box>
+                    <br />
+                    <Typography><Link to='/zoomAuth'>Skip Spotify login</Link></Typography>
                 </Box>
             </Container>
         </>

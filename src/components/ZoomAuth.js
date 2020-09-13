@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Typography, Container } from '@material-ui/core';
 // import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles(() => ({
@@ -57,6 +58,8 @@ export default function ZoomAuth() {
                             Sign in to Zoom
                         </Button>
                     </Box>
+                    <br />
+                    <Typography><Link to='/home'>Skip Zoom login</Link></Typography>
                 </Box>
             </Container>
         </>
