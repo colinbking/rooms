@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,18 +32,67 @@ const useStyles = makeStyles(() => ({
 
 export default function RoomGrid() {
     const classes = useStyles();
+    const [gymActiveUsers, setGymActiveUsers] = useState([]);
+    const [cafeActiveUsers, setCafeActiveUsers] = useState([]);
 
-    useEffect(() => {
-        // TODO: read and map this
-        // cafe ID: 31
+    function getGymActiveUsers() {
         api.get('/gym/21/whos_active', {headers: headers})
         .then(res => {
+            console.log("whos active res:");
             console.log(res);
+            setGymActiveUsers(res.data);
         })
         .catch((err) => {
             console.log(err.response);
         });
+    }
+    
+    useEffect(() => {
+        // TODO: poll for individual rooms
+        getGymActiveUsers();
+        const interval = setInterval(() => {
+            getGymActiveUsers();
+        }, 5000)
+        return () => clearInterval(interval);
     }, [])
+
+    function getCafeActiveUsers() {
+        api.get('/cafe/31/whos_active', {headers: headers})
+        .then(res => {
+            console.log("whos active res:");
+            console.log(res);
+            setCafeActiveUsers(res.data);
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
+    }
+    
+    useEffect(() => {
+        // TODO: poll for individual rooms
+        getCafeActiveUsers();
+        const interval = setInterval(() => {
+            getCafeActiveUsers();
+        }, 5000)
+        return () => clearInterval(interval);
+    }, [])
+
+
+
+
+
+    // useEffect(() => {
+    //     // TODO: read and map this
+    //     // cafe ID: 31
+    //     api.get('/gym/21/whos_active', {headers: headers})
+    //     .then(res => {
+    //         console.log(res);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err.response);
+    //     });
+
+
 
     return (
         <Grid container spacing={3}>
@@ -62,7 +111,23 @@ export default function RoomGrid() {
                             Gym
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Getting buff: cbk1, sj43
+                            Getting buff: &nbsp;
+                            {gymActiveUsers.map((user, i) => {
+                                if (i === gymActiveUsers.length - 1) {
+                                    return (
+                                        user
+                                    );
+                                } else {
+                                    return (
+                                        user + ', '
+                                    )
+                                }
+                            })}
+                            {
+                                cafeActiveUsers.length === 0 &&
+                                <span>No one's here yet!</span>
+                            }
+
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -83,7 +148,24 @@ export default function RoomGrid() {
                             Cafe
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Buying a coffee: leebron
+                            
+                            Buying a coffee: &nbsp;
+                            { cafeActiveUsers.map((user, i) => {
+                                    if (i === cafeActiveUsers.length - 1) {
+                                        return (
+                                            user
+                                        );
+                                    } else {
+                                        return (
+                                            user + ', '
+                                        )
+                                    }
+                                })
+                            }
+                            {
+                                cafeActiveUsers.length === 0 &&
+                                <span>No one's here yet!</span>
+                            }
                         </Typography>
                         </CardContent>
                     </CardActionArea>
