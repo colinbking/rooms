@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import gymDefault from '../assets/gymDefault.png';
 import gymOpen from '../assets/gymOpen.png';
@@ -163,15 +163,38 @@ export default function Gym() {
     const [showYT, setShowYT] = useState(false);
     const [ytLink, setYTLink] = useState("https://www.youtube.com/embed/2pLT-olgUJs?autoplay=1");
     
+    useEffect(() => {
+        // Get/create zoom meeting
+        const body = {
+            "username" : localStorage.getItem("username"),
+            "id" : localStorage.getItem("id")
+        }
+        api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
+        .then(res => {
+            localStorage.setItem("meeting", res.data.meeting);
+            console.log("successfully set meeting in local storage");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
+
+        // Updating spotify playlist
+        // TODO: for cafe, is .../cafe
+        api.put('/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
+        .then(res => {
+            console.log("successfully added to playlist");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        })
+
+    }, [])
     
     function handleYTHover() {
         setGClass(classes.ytHighlight);
     }
 
-    function handleYTClick() {
-        
-        // TODO: don't play in background
-        
+    function handleYTClick() {        
         if (showYT === true) {
             setShowYT(false);
         } else {
@@ -209,38 +232,14 @@ export default function Gym() {
     }
 
     function handleZoomClick() {
-        // Get/create zoom meeting
-        const body = {
-            "username" : localStorage.getItem("username"),
-            "id" : localStorage.getItem("id")
-        }
-        // TODO: this should be called immediately upon entry
-        api.put('/gym/' + localStorage.getItem("gym_id") + '/joined_gym', body, {headers: headers})
-        .then(res => {
-            localStorage.setItem("meeting", res.data.meeting);
-            
-        })
-        .catch((err) => {
-            console.log(err.response);
-        })
-
-        // Updating spotify playlist
-        // TODO: for cafe, is .../cafe
-        api.put('/add_playlist/gym/' + localStorage.getItem("username"), body, {headers: headers})
-        .then(res => {
-            console.log("successfully added to playlist");
-        })
-        .catch((err) => {
-            console.log(err.response);
-        })
-
-
-
         // Join zoom meeting
-        window.open(
-            localStorage.getItem("meeting"),
-            '_blank' // <- This is what makes it open in a new window.
-        );
+        const mtg = localStorage.getItem("meeting");
+        if (mtg) {
+            window.open(
+                mtg,
+                '_blank' // <- This is what makes it open in a new window.
+            );
+        }
     }
     
     function handleSpotifyHover() {
@@ -315,7 +314,7 @@ export default function Gym() {
             <button className={classes.doorBtn} onMouseEnter={() => handleDoorHover()} onMouseOut={() => resetBackground()} onClick={() => handleDoorClick()}/>
             <button className={classes.whiteboardBtn} onMouseEnter={() => handleWhiteboardHover()} onMouseOut={() => resetBackground()} onClick={() => handleWhiteboardClick()}/>
             <button className={classes.zoomBtn} onMouseEnter={() => handleZoomHover()} onMouseOut={() => resetBackground()} onClick={() => handleZoomClick()}/>
-            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe title="spotify" src="https://open.spotify.com/embed/playlist/5sHebLj2M8wPPc1rfLKtX9?si=ulRKMYT9R8C7Scmcny3fJQ" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680679-5793-8386"></iframe>
             { showYT && 
                 <iframe title="youtube" className={classes.ytFrameShow} width="560" height="315" src={ytLink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
