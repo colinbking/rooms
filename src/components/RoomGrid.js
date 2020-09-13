@@ -48,7 +48,6 @@ export default function RoomGrid() {
     }
     
     useEffect(() => {
-        // TODO: poll for individual rooms
         getGymActiveUsers();
         const interval = setInterval(() => {
             getGymActiveUsers();
@@ -69,29 +68,12 @@ export default function RoomGrid() {
     }
     
     useEffect(() => {
-        // TODO: poll for individual rooms
         getCafeActiveUsers();
         const interval = setInterval(() => {
             getCafeActiveUsers();
         }, 5000)
         return () => clearInterval(interval);
     }, [])
-
-
-
-
-
-    // useEffect(() => {
-    //     // TODO: read and map this
-    //     // cafe ID: 31
-    //     api.get('/gym/21/whos_active', {headers: headers})
-    //     .then(res => {
-    //         console.log(res);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.response);
-    //     });
-
 
 
     return (
@@ -111,7 +93,7 @@ export default function RoomGrid() {
                             Gym
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Getting buff: &nbsp;
+                            Getting buff:&nbsp;
                             {gymActiveUsers.map((user, i) => {
                                 if (i === gymActiveUsers.length - 1) {
                                     return (
@@ -149,7 +131,7 @@ export default function RoomGrid() {
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             
-                            Buying a coffee: &nbsp;
+                            Buying a coffee:&nbsp;
                             { cafeActiveUsers.map((user, i) => {
                                     if (i === cafeActiveUsers.length - 1) {
                                         return (
@@ -183,10 +165,10 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Lounge
+                            Lounge 
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Couch surfing: tmg5
+                            Couch surfing: No one's here yet!
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -204,10 +186,10 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Kitchen
+                            Kitchen 
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Cooking up a storm: cmz2
+                            Cooking up a storm: No one's here yet!
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -228,7 +210,7 @@ export default function RoomGrid() {
                             Office
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Working hard: rixner
+                            Working hard: No one's here yet!
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -246,10 +228,10 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Class
+                            Class 
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
-                            Streaming lectures: luay
+                            Streaming lectures: No one's here yet!
                         </Typography>
                         </CardContent>
                     </CardActionArea>

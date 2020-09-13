@@ -51,6 +51,18 @@ export default function Home() {
             console.log(err.response);
         });
 
+        // Join big room
+        const body = {
+            "username" : localStorage.getItem("username")
+        }
+        api.put('/br/11/joined_br', body, {headers: headers})
+        .then(res => {
+            console.log("successfully notified br joined");
+        })
+        .catch((err) => {
+            console.log(err.response);
+        });
+
         // zoom login
         if (code) {
             console.log("code: " + code);
