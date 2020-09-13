@@ -59,7 +59,7 @@ export default function Home() {
             const body = {
                 "auth_code" : code
             }
-            api.post('/user/tmg5/zoom_login', body, {headers: headers})
+            api.post('/user/' + localStorage.getItem("username") + '/zoom_login', body, {headers: headers})
             .then(res => {
                 console.log("zoom login res: ");
                 console.log(res);
