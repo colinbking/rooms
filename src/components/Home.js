@@ -5,7 +5,6 @@ import RoomGrid from './RoomGrid';
 import Sidebar from './Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import useQuery from '../util/useQuery';
-// import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import logo from '../assets/gymRoom.png';
 
@@ -23,16 +22,15 @@ const useStyles = makeStyles(() => ({
     rightBox: {
         marginTop: '5rem'
     },
-    card: {
-
-    },
     logo: {
         maxHeight: '5rem',
     },
     logoBox: {
-        marginBottom: '1rem',
-        backgroundColor: '#e8e8e8'
-    }
+        backgroundColor: '#e8e8e8',
+    },
+    logoText: {
+        marginTop: '1.25rem',
+    },
 }));
 
 export default function Home() {
@@ -75,15 +73,17 @@ export default function Home() {
             <Grid container spacing={0}>
                 <Grid item xs={2}>
                     <Box display="flex" flexDirection="row" className={classes.logoBox}>
-                        <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>             
-                        <Typography variant="h6">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
+                        <Link to='/'><img src={logo} className={classes.logo} alt="logo" /></Link>
+                        <Box className={classes.logoText}>
+                            <Typography variant="h4">&nbsp;&nbsp;<Link to="/" style={{ textDecoration: 'none', color: '#43200C' }}>ROOMY</Link></Typography>
+                        </Box>
                     </Box>
                     <Sidebar />
                 </Grid>
                 <Grid item xs={10}>
                     <Container className={classes.cont} maxWidth='lg'>
                         <Typography variant='h3' align='center'>
-                            <Box fontWeight="fontWeightBold" style={{marginTop:'-1rem'}}>Roomies<br /></Box>
+                            <Box fontWeight="fontWeightBold" style={{marginTop:'-3rem', marginBottom:'3rem'}}>Roomies<br /></Box>
                         </Typography>
                         <Box mt='1rem'>
                             <RoomGrid />

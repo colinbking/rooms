@@ -17,19 +17,19 @@ const useStyles = makeStyles(() => ({
         // paddingTop: '3rem',
         height: '100vh',
         backgroundColor: '#F2F2F2',
-        marginRight: '-4rem'
+        
     },
     profileBox: {
         padding: '2rem',
         paddingRight: '0rem'
     },
     pfp: {
-        height: '10rem',
-        width: '10rem',
+        height: '8rem',
+        width: '8rem',
         borderRadius: '50%'
     },
     rightBox: {
-        marginTop: '3rem'
+        marginTop: '2rem'
     },
     usersBox: {
         marginTop: '1rem',
