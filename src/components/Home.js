@@ -78,6 +78,37 @@ export default function Home() {
                 console.log(err.response);
             })
         }
+
+        // handle tab closure
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.post('/br/11/left_br', body, {headers: headers})
+            .then(res => {
+                console.log('left big room');
+                // history.push('/');
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        })
+
+        // handle navigation away
+        return function logout() {
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.post('/br/11/left_br', body, {headers: headers})
+            .then(res => {
+                console.log('left big room');
+                // history.push('/');
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        }
     }, [code])
     
     return (

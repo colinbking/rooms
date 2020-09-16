@@ -71,6 +71,9 @@ export default function SpotifyAuth() {
                     </Box>
                     <br />
                     <Typography><Link to='/zoomAuth'>Skip Spotify login</Link></Typography>
+                    <br />
+                    <br />
+                    <Typography color='error'>Unfortunately custom Spotify preferences only works on localhost, on the deployed version it is hard coded to a dev account.</Typography>
                 </Box>
             </Container>
         </>

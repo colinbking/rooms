@@ -69,11 +69,11 @@ const useStyles = makeStyles(() => ({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, youtubeBtn: {
-        height: '4rem',
-        width: '6rem',
+        height: '12rem',
+        width: '12rem',
         position: 'absolute',
-        top: '22.5rem',
-        left: '39rem',
+        top: '19rem',
+        left: '37rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -81,10 +81,10 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     spotifyBtn: {
-        height: '12rem',
-        width: '15rem',
+        height: '14rem',
+        width: '17rem',
         position: 'absolute',
-        top: '3rem',
+        top: '1rem',
         right: '34rem',
         color: 'transparent',
         backgroundColor: 'transparent',
@@ -93,10 +93,10 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     zoomBtn: {
-        height: '12rem',
-        width: '15rem',
+        height: '13rem',
+        width: '16rem',
         position: 'absolute',
-        bottom: '15rem',
+        bottom: '14rem',
         right: '34rem',
         color: 'transparent',
         backgroundColor: 'transparent',
@@ -105,8 +105,8 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     doorBtn: {
-        height: '25rem',
-        width: '12rem',
+        height: '27rem',
+        width: '14rem',
         position: 'absolute',
         top: '24rem',
         left: '3rem',
@@ -117,11 +117,11 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     whiteboardBtn: {
-        height: '8rem',
-        width: '7rem',
+        height: '10rem',
+        width: '9rem',
         position: 'absolute',
-        top: '22rem',
-        right: '27rem',
+        top: '20rem',
+        right: '26rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -204,6 +204,37 @@ export default function Gym() {
             console.log(err.response);
         })
 
+        // handle tab closure
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            // tell api leaving room
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.put('/gym/21/left_gym', body, {headers: headers})
+            .then(res => {
+                console.log(res);
+                // get back new list of active users
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        })
+
+        return function leaveRoom() {
+            // tell api leaving room
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.put('/gym/21/left_gym', body, {headers: headers})
+            .then(res => {
+                console.log(res);
+                // get back new list of active users
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        }
     }, [])
     
     function handleYTHover() {
@@ -325,7 +356,7 @@ export default function Gym() {
 
     return (
         <>
-        <div className={classes.defaultBackground2}></div>
+        {/* <div className={classes.defaultBackground2}></div> */}
         <div className={gClass}>
             <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
             <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>

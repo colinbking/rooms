@@ -72,11 +72,11 @@ const useStyles = makeStyles(() => ({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     }, youtubeBtn: {
-        height: '4rem',
-        width: '6rem',
+        height: '10rem',
+        width: '8rem',
         position: 'absolute',
-        top: '22.5rem',
-        left: '43rem',
+        top: '19rem',
+        left: '42rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -84,11 +84,11 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     spotifyBtn: {
-        height: '12rem',
-        width: '15rem',
+        height: '14rem',
+        width: '17rem',
         position: 'absolute',
-        top: '3rem',
-        right: '40rem',
+        top: '2rem',
+        right: '39rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -96,8 +96,8 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     doorBtn: {
-        height: '25rem',
-        width: '12rem',
+        height: '27rem',
+        width: '14rem',
         position: 'absolute',
         top: '24rem',
         left: '3rem',
@@ -108,11 +108,11 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     zoomBtn: {
-        height: '7rem',
-        width: '15rem',
+        height: '9rem',
+        width: '17rem',
         position: 'absolute',
-        top: '29rem',
-        left: '20rem',
+        top: '28rem',
+        left: '19rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -120,11 +120,11 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     whiteboardBtn: {
-        height: '8rem',
-        width: '6rem',
+        height: '10rem',
+        width: '8rem',
         position: 'absolute',
-        top: '13rem',
-        right: '34rem',
+        top: '11rem',
+        right: '33rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -132,11 +132,11 @@ const useStyles = makeStyles(() => ({
         outline: 0
     },
     tomatoBtn: {
-        height: '6rem',
-        width: '6rem',
+        height: '8rem',
+        width: '8rem',
         position: 'absolute',
-        top: '36rem',
-        right: '31rem',
+        top: '34rem',
+        right: '30rem',
         color: 'transparent',
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -173,12 +173,12 @@ const useStyles = makeStyles(() => ({
         top: '1rem',
         visibility: 'visible'
     },
-    ytFrameHidden: {
-        position: 'absolute',
-        left: '1rem',
-        top: '1rem',
-        visibility: 'hidden'
-    }, 
+    // ytFrameHidden: {
+    //     position: 'absolute',
+    //     left: '1rem',
+    //     top: '1rem',
+    //     visibility: 'hidden'
+    // }, 
     tomatoFrameShow: {
         position: 'absolute',
         left: '1rem',
@@ -199,7 +199,8 @@ export default function Cafe() {
     const [sClass, setSClass] = useState(classes.spotifyFrameHidden);
     const [cClass, setCClass] = useState(classes.defaultBackground);
     const [wClass, setWClass] = useState(classes.whiteboardFrameHidden);
-    const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    // const [yClass, setYClass] = useState(classes.ytFrameHidden);
+    const [showYT, setShowYT] = useState(true);
     const [tClass, setTClass] = useState(classes.tomatoFrameHidden);
 
     useEffect(() => {
@@ -216,7 +217,6 @@ export default function Cafe() {
         .catch((err) => {
             console.log(err.response);
         })
-        // adding a comment here
 
         // Updating spotify playlist
         api.get('/user/add_playlist/cafe/' + localStorage.getItem("username"), {headers: headers})
@@ -227,6 +227,37 @@ export default function Cafe() {
             console.log(err.response);
         })
 
+        // handle tab closure
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            // tell api leaving room
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.put('/cafe/31/left_cafe', body, {headers: headers})
+            .then(res => {
+                console.log(res);
+                // get back new list of active users
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        })
+
+        return function leaveRoom() {
+            const body = {
+                "username" : localStorage.getItem("username")
+            }
+            api.put('/cafe/31/left_cafe', body, {headers: headers})
+            .then(res => {
+                console.log(res);
+                // get back new list of active users
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        }
+
     }, [])
 
     function handleYTHover() {
@@ -234,11 +265,7 @@ export default function Cafe() {
     }
 
     function handleYTClick() {
-        if (yClass === classes.ytFrameShow) {
-            setYClass(classes.ytFrameHidden);
-        } else {
-            setYClass(classes.ytFrameShow)
-        }
+        setShowYT(!showYT);
     }
 
     function handleWhiteboardHover() {
@@ -298,7 +325,6 @@ export default function Cafe() {
 
     function handleDoorClick() {
         // tell api leaving room
-        // foo
         const body = {
             "username" : localStorage.getItem("username")
         }
@@ -320,7 +346,7 @@ export default function Cafe() {
 
     return (
         <>
-            <div className={classes.defaultBackground2}></div>
+            {/* <div className={classes.defaultBackground2}></div> */}
             <div className={cClass}>
                 <button className={classes.youtubeBtn} onMouseEnter={() => handleYTHover()} onMouseOut={() => resetBackground()} onClick={() => handleYTClick()}/>
                 <button className={classes.spotifyBtn} onMouseEnter={() => handleSpotifyHover()} onMouseOut={() => resetBackground()} onClick={() => handleSpotifyClick()}/>
@@ -330,7 +356,9 @@ export default function Cafe() {
                 <button className={classes.tomatoBtn} onMouseEnter={() => handleTomatoHover()} onMouseOut={() => resetBackground()} onClick={() => handleTomatoClick()}/>
                 <iframe title="spotify" src="https://open.spotify.com/embed/playlist/2P8cx6O6JIu0sT2ItymYNI" className={sClass} width="300" height="185" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <iframe title="whiteboard" width="400px" className={wClass} height="650px" src="https://r3.whiteboardfox.com/3680838-4977-9597"></iframe>
-                <iframe title="youtube" className={yClass} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                { showYT && 
+                    <iframe title="youtube" className={classes.ytFrameShow} width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                }
                 <iframe title="timer" className={tClass} src="https://www.pomofocus.io/" width="330" height="300" frameBorder="0" allowtransparency="true"></iframe>
             </div>
         </>

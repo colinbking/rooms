@@ -23,7 +23,6 @@ const useStyles = makeStyles(() => ({
 export default function Login() {
     const classes = useStyles();
     const [doorSrc, setDoorSrc] = useState(doorAnimation);
-    //asdfadsfasdf
     
     return (
         <>
@@ -49,6 +48,7 @@ export default function Login() {
                             <br /><br />
                             Click the door to begin.
                             </Typography>
+                            <Typography color='error'><br /><br />Note: this site works best on a standard laptop resolution.</Typography>
                             {/* <Button variant="contained" color="primary" fullWidth={true} component={Link} to={'/login'}>Enter</Button> */}
                         </Box>
                     </Grid>

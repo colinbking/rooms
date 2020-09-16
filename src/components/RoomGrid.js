@@ -167,7 +167,7 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Lounge 
+                            Lounge (Under Construction)
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             Couch surfing: No one's here yet!
@@ -188,7 +188,7 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Kitchen 
+                            Kitchen (Under Construction)
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             Cooking up a storm: No one's here yet!
@@ -209,7 +209,7 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Office
+                            Office (Under Construction)
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             Working hard: No one's here yet!
@@ -230,7 +230,7 @@ export default function RoomGrid() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                            Class 
+                            Class (Under Construction)
                         </Typography>
                         <Typography variant="body2" component="p" align="center">
                             Streaming lectures: No one's here yet!

@@ -1,7 +1,6 @@
 # Roomy (Frontend)
 
-Since the COVID-19 pandemic began, the real risk of encountering coronavirus in public areas such as stores means it’s often best to avoid grocery shopping unless it’s absolutely necessary, especially for elderly or otherwise immunocompromised individuals. Home Recipes was created to help you find recipes for the ingredients you already have at home so that you can push off that grocery store trip a little bit longer while still making delicious food.
-Watch the [Demo Video](https://www.youtube.com/watch?v=8nKci7h8wNw&feature=youtu.be)!
+Roomy placed in the Top 10 overall at PennApps. Watch the [Demo Video](https://www.youtube.com/watch?v=eEHX2ZniSGE&ab_channel=Christina)!
  
 ## Features
 * Zoom API integration
@@ -15,4 +14,4 @@ Watch the [Demo Video](https://www.youtube.com/watch?v=8nKci7h8wNw&feature=youtu
 2. Start the server with ```npm start```
 
 ## Team
-Home Recipes was created by Timothy Goh (tGoh98), Colin King (colinbking), Seung Hun Jang (sj43), and Christina Zhou for University of Pensylvania's hackathon, PennApps. Read more about it in the [Devpost](https://devpost.com/software/homerecipes).
+Home Recipes was created by Timothy Goh (tGoh98), Colin King (colinbking), Seung Hun Jang (sj43), and Christina Zhou for University of Pensylvania's hackathon, PennApps. Read more about it in the [Devpost](https://devpost.com/software/roomy).
