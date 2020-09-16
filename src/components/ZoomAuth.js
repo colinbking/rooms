@@ -59,7 +59,7 @@ export default function ZoomAuth() {
                         </Button>
                     </Box>
                     <br />
-                    <Typography><Link to='/home'>Skip Zoom login</Link></Typography>
+                    <Typography><Link to='/home'>Skip Zoom login (active statuses may not show up properly)</Link></Typography>
                 </Box>
             </Container>
         </>
