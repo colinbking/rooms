@@ -75,7 +75,7 @@ export default function Sidebar() {
         getAllActiveUsers();
         const interval = setInterval(() => {
             getAllActiveUsers();
-        }, 5000)
+        }, 3000)
         return () => clearInterval(interval);
     }, [])
 

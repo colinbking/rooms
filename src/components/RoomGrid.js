@@ -66,7 +66,7 @@ export default function RoomGrid() {
         const interval = setInterval(() => {
             getCafeActiveUsers();
             getGymActiveUsers();
-        }, 5000)
+        }, 3000)
         return () => clearInterval(interval);
     }, [])
     // useEffect(() => {
